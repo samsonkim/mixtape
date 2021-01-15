@@ -42,7 +42,7 @@ class MixtapeServiceIntegrationTest extends AnyFlatSpec with Matchers {
 
     val changeAction1 = changeActions(0)
     changeAction1.command shouldEqual "playlist-add"
-    changeAction1.data.sameElements(Array("9", "1", "20")) shouldEqual true
+    changeAction1.data.sameElements(Array("9", "1", "20,36")) shouldEqual true
 
     val changeAction2 = changeActions(1)
     changeAction2.command shouldEqual "playlist-remove"
@@ -80,7 +80,7 @@ class MixtapeServiceIntegrationTest extends AnyFlatSpec with Matchers {
     playlists.map(_.id) should contain only ("2", "3", "9")
     playlists.map(_.id) should contain noneOf ("1", "-1")
 
-    playlists.filter(_.id == "9").head shouldEqual Playlist("9", "1", Set("20"))
+    playlists.filter(_.id == "9").head shouldEqual Playlist("9", "1", Set("20", "36"))
     playlists.filter(_.id == "2").head shouldEqual Playlist("2", "3", Set("6", "8", "11", "37"))
   }
 }
